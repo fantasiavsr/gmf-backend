@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PricingPlanController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CertificateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,24 @@ Route::middleware(['App\Http\Middleware\EnsureTokenIsValid'])->group(function ()
     Route::apiResource('products', ProductController::class);
     Route::apiResource('services', ServiceController::class);
     Route::apiResource('pricing', PricingPlanController::class);
+});
+
+// Certificate routes
+// Public endpoint - view certificate preview by certificate number
+Route::get('/certificates/search', [CertificateController::class, 'searchByWelderId']);
+Route::get('/certificates/preview/{certificateNo}', [CertificateController::class, 'show'])->where('certificateNo', '.*');
+
+// Protected certificate routes (require authentication)
+Route::middleware('auth:sanctum')->group(function () {
+    // Get full certificate details (owner or admin only)
+    Route::get('/certificates/{certificateNo}/detail', [CertificateController::class, 'detail'])->where('certificateNo', '.*');
+
+    // Download certificate PDF (owner or admin only)
+    Route::get('/certificates/{certificateNo}/pdf', [CertificateController::class, 'downloadPdf'])->where('certificateNo', '.*');
+
+    // List all certificates for the authenticated user
+    Route::get('/user/certificates', [CertificateController::class, 'listUserCertificates']);
+
+    // Admin: link unlinked certificate to user
+    Route::post('/admin/certificates/{id}/link-user', [CertificateController::class, 'linkToUser']);
 });
