@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -13,60 +12,54 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::create([
+        Product::firstOrCreate(['sku' => 'WH-001'], [
             'name' => 'Wireless Headphones',
             'type' => 'Electronics',
-            'sku' => 'WH-001',
             'price' => '$349',
             'available' => 24,
             'status' => 'active',
             'description' => 'Premium wireless headphones with noise cancellation.',
         ]);
 
-        Product::create([
+        Product::firstOrCreate(['sku' => 'LB-002'], [
             'name' => 'Leather Backpack',
             'type' => 'Accessories',
-            'sku' => 'LB-002',
             'price' => '$129',
             'available' => 0,
             'status' => 'inactive',
             'description' => 'Handcrafted leather backpack with laptop sleeve.',
         ]);
 
-        Product::create([
+        Product::firstOrCreate(['sku' => 'UC-003'], [
             'name' => 'USB-C Hub',
             'type' => 'Electronics',
-            'sku' => 'UC-003',
             'price' => '$79',
             'available' => 156,
             'status' => 'active',
             'description' => '7-in-1 USB-C hub with HDMI and card reader.',
         ]);
 
-        Product::create([
+        Product::firstOrCreate(['sku' => 'CM-004'], [
             'name' => 'Coffee Maker',
             'type' => 'Appliances',
-            'sku' => 'CM-004',
             'price' => '$199',
             'available' => 8,
             'status' => 'active',
             'description' => 'Programmable drip coffee maker with thermal carafe.',
         ]);
 
-        Product::create([
+        Product::firstOrCreate(['sku' => 'DL-005'], [
             'name' => 'Desk Lamp',
             'type' => 'Furniture',
-            'sku' => 'DL-005',
             'price' => '$89',
             'available' => 42,
             'status' => 'active',
             'description' => 'Adjustable LED desk lamp with wireless charging base.',
         ]);
 
-        Product::create([
+        Product::firstOrCreate(['sku' => 'PS-006'], [
             'name' => 'Phone Stand',
             'type' => 'Accessories',
-            'sku' => 'PS-006',
             'price' => '$29',
             'available' => 203,
             'status' => 'active',

@@ -9,8 +9,7 @@ class PricingPlanSeeder extends Seeder
 {
     public function run(): void
     {
-        PricingPlan::create([
-            'name' => 'Starter',
+        PricingPlan::firstOrCreate(['name' => 'Starter'], [
             'description' => 'A focused plan for individuals and small teams getting started.',
             'price' => '$29',
             'billingPeriod' => 'month',
@@ -18,8 +17,7 @@ class PricingPlanSeeder extends Seeder
             'duration' => 'Monthly',
         ]);
 
-        PricingPlan::create([
-            'name' => 'Professional',
+        PricingPlan::firstOrCreate(['name' => 'Professional'], [
             'description' => 'Advanced tools for growing teams that need more flexibility.',
             'price' => '$79',
             'billingPeriod' => 'month',
@@ -27,8 +25,7 @@ class PricingPlanSeeder extends Seeder
             'duration' => 'Monthly',
         ]);
 
-        PricingPlan::create([
-            'name' => 'Enterprise',
+        PricingPlan::firstOrCreate(['name' => 'Enterprise'], [
             'description' => 'A tailored plan with dedicated support for larger organizations.',
             'price' => '$199',
             'billingPeriod' => 'year',

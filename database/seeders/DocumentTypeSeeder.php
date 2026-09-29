@@ -12,9 +12,8 @@ class DocumentTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        DocumentType::create([
+        DocumentType::firstOrCreate(['category' => 'WQT'], [
             'name' => 'Welder Qualification Test Record',
-            'category' => 'WQT',
             'description' => 'Welder Qualification Test Record (WQT) - AWS standard certification',
             'is_public' => true,
         ]);

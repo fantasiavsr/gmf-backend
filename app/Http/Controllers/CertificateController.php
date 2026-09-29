@@ -12,7 +12,7 @@ class CertificateController extends Controller
      * Get certificate by certificate number (public endpoint).
      * Returns safe preview information only.
      */
-    public function show($certificateNo): JsonResponse
+    public function show(string $certificateNo): JsonResponse
     {
         $certificate = Certificate::where('certificate_no', $certificateNo)->first();
 
@@ -66,7 +66,7 @@ class CertificateController extends Controller
     /**
      * Get full certificate details for authenticated user if owner.
      */
-    public function detail(Request $request, $certificateNo): JsonResponse
+    public function detail(Request $request, string $certificateNo): JsonResponse
     {
         $user = $request->user();
         $certificate = Certificate::where('certificate_no', $certificateNo)->first();
@@ -103,7 +103,7 @@ class CertificateController extends Controller
     /**
      * Download certificate PDF (protected).
      */
-    public function downloadPdf(Request $request, $certificateNo): JsonResponse
+    public function downloadPdf(Request $request, string $certificateNo): JsonResponse
     {
         $user = $request->user();
         $certificate = Certificate::where('certificate_no', $certificateNo)->first();
@@ -164,7 +164,7 @@ class CertificateController extends Controller
     /**
      * Admin: Link an unlinked certificate to a user.
      */
-    public function linkToUser(Request $request, $certificateId): JsonResponse
+    public function linkToUser(Request $request, int|string $certificateId): JsonResponse
     {
         // This is a placeholder for admin functionality
         // In a real implementation, this would require admin middleware

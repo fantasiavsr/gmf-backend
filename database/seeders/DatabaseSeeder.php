@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\UserSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             PricingPlanSeeder::class,
             DocumentTypeSeeder::class,
+            UserSeeder::class,
             CertificateSeeder::class,
         ]);
     }
