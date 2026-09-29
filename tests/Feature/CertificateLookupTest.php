@@ -33,4 +33,18 @@ class CertificateLookupTest extends TestCase
             ->assertOk()
             ->assertExactJson(['certificates' => []]);
     }
+
+    public function test_certificate_number_preview_accepts_encoded_slashes(): void
+    {
+        Certificate::create([
+            'certificate_no' => 'GMF/WQT/AWS/0612',
+            'welder_name' => 'John Welder',
+            'welder_identification_no' => 'GMF-533',
+            'test_date' => '2025-04-09',
+        ]);
+
+        $this->getJson('/api/certificates/preview/GMF%2FWQT%2FAWS%2F0612')
+            ->assertOk()
+            ->assertJsonPath('certificate.certificate_no', 'GMF/WQT/AWS/0612');
+    }
 }
